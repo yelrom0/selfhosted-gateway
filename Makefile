@@ -6,6 +6,9 @@ docker:
 	docker build -t fractalnetworks/gateway-client:latest ./src/client-link/
 	docker build -t fractalnetworks/gateway-cli:latest ./src/create-link/
 
+client-link-base:
+	docker build -t fractalnetworks/client-link-base:latest ./src/client-link-base/
+
 setup:
 	docker network create gateway
 
