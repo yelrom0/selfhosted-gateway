@@ -17,8 +17,10 @@ wg set link0 peer $GATEWAY_LINK_WG_PUBKEY allowed-ips 10.0.0.1/32 persistent-kee
 if [ -z ${FORWARD_ONLY+x} ]
 then
     echo "Using caddy with SSL termination to forward traffic to app."
-    envsubst < /etc/Caddyfile.template > /etc/Caddyfile
-    caddy run --config /etc/Caddyfile
+    # envsubst < /etc/Caddyfile.template > /etc/Caddyfile
+    envsubst < /etc/caddy.json.template > /etc/caddy.json
+    # caddy run --config /etc/Caddyfile
+    caddy run --config /etc/caddy.json
 else
     echo "Caddy is disabled. Using socat to forward traffic to app."
     socat TCP4-LISTEN:8080,fork,reuseaddr TCP4:$EXPOSE,reuseaddr &
